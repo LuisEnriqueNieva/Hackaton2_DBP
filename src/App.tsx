@@ -3,7 +3,7 @@ import { ProtectedRoute } from './auth/ProtectedRoute'
 import { Layout } from './components/Layout'
 import { LoginPage } from './pages/LoginPage'
 import { DashboardPage } from './pages/DashboardPage'
-
+import { SectorStoryPage } from './features/sectorStory/SectorStoryPage'
 function App() {
   return (
     <Routes>
@@ -15,7 +15,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           {/* Integrante B: /tropels, /signals, /signals/:id */}
-          {/* Integrante C: /sectors/:id/story */}
+          <Route path="/sectors/:id/story" element={<SectorStoryPage />} />
         </Route>
       </Route>
 
