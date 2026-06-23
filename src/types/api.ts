@@ -52,48 +52,23 @@ export interface ApiError {
   details: Record<string, unknown>
 }
 
-// ---- Enums nombrados (reutilizables por toda la app) ----
-export type Species = 'BLOBITO' | 'CHISPA' | 'GRUNON' | 'DORMILON' | 'GLITCHY'
-export type VitalState = 'ESTABLE' | 'HAMBRIENTO' | 'AGITADO' | 'MUTANDO' | 'CRITICO'
-export type SignalType =
-  | 'HAMBRE'
-  | 'ABANDONO'
-  | 'MUTACION'
-  | 'FUGA'
-  | 'CONFLICTO'
-  | 'REPRODUCCION_MASIVA'
-  | 'SENAL_CORRUPTA'
-export type Severity = 'LEVE' | 'MODERADO' | 'GRAVE' | 'CRITICO'
-export type SignalStatus = 'RECIBIDA' | 'PROCESANDO' | 'ATENDIDA'
-export type Climate = 'PIXEL_FOREST' | 'NEON_CAVE' | 'CLOUD_AQUARIUM' | 'RETRO_ARCADE'
+export interface StoryStageMetric {
+  label: string
+  value: number | string
+}
 
-// ---- Auth ----
-export interface User {
+export interface StoryStage {
   id: string
-  displayName: string
-  email: string
-  teamCode: string
-  role: string
+  order: number
+  title: string
+  body: string
+  visualKey: string
+  metrics: StoryStageMetric[]
 }
 
-export interface LoginRequest {
-  teamCode: string
-  email: string
-  password: string
-}
-
-export interface LoginResponse {
-  token: string
-  expiresAt: string
-  user: User
-}
-
-// ---- Dashboard ----
-export interface DashboardSummary {
-  totalTropels: number
-  criticalTropels: number
-  openSignals: number
-  sectorStabilityAvg: number
-  signalsBySeverity: Record<Severity, number>
-  generatedAt: string
+export interface SectorStory {
+  sectorId: string
+  sectorName: string
+  summary: string
+  stages: StoryStage[]
 }
