@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // base relativa: los assets resuelven bajo el subpath de GitHub Pages
-  // (ej. /Hackaton2_DBP/) sin hardcodear el nombre del repo.
-  base: './',
+  // Vercel sirve la app en la raíz del dominio.
+  base: '/',
   plugins: [react(), tailwindcss()],
 })

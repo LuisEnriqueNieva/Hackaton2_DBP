@@ -26,13 +26,20 @@ export interface TropelPage {
   size: number
 }
 
+// Referencia liviana al Tropel asociado, tal como la devuelve el backend.
+export interface SignalTropelRef {
+  id: string
+  name: string
+  species: Species
+}
+
 export interface Signal {
   id: string
-  tropelId: string
-  signalType: 'HAMBRE' | 'ABANDONO' | 'MUTACION' | 'FUGA' | 'CONFLICTO' | 'REPRODUCCION_MASIVA' | 'SENAL_CORRUPTA'
-  severity: 'LEVE' | 'MODERADO' | 'GRAVE' | 'CRITICO'
-  status: 'RECIBIDA' | 'PROCESANDO' | 'ATENDIDA'
+  signalType: SignalType
+  severity: Severity
+  status: SignalStatus
   rawContent: string
+  tropel: SignalTropelRef
   createdAt: string
   updatedAt: string
 }
@@ -71,4 +78,68 @@ export interface SectorStory {
   sectorName: string
   summary: string
   stages: StoryStage[]
+}
+
+// ---- Enums nombrados (reutilizables por toda la app) ----
+export type Species = 'BLOBITO' | 'CHISPA' | 'GRUNON' | 'DORMILON' | 'GLITCHY'
+export type VitalState = 'ESTABLE' | 'HAMBRIENTO' | 'AGITADO' | 'MUTANDO' | 'CRITICO'
+export type SignalType =
+  | 'HAMBRE'
+  | 'ABANDONO'
+  | 'MUTACION'
+  | 'FUGA'
+  | 'CONFLICTO'
+  | 'REPRODUCCION_MASIVA'
+  | 'SENAL_CORRUPTA'
+export type Severity = 'LEVE' | 'MODERADO' | 'GRAVE' | 'CRITICO'
+export type SignalStatus = 'RECIBIDA' | 'PROCESANDO' | 'ATENDIDA'
+export type Climate = 'PIXEL_FOREST' | 'NEON_CAVE' | 'CLOUD_AQUARIUM' | 'RETRO_ARCADE'
+
+// Ordenamientos permitidos por GET /tropels.
+export type TropelSort = 'name,asc' | 'updatedAt,desc' | 'chaosIndex,desc'
+
+// ---- Auth ----
+export interface User {
+  id: string
+  displayName: string
+  email: string
+  teamCode: string
+  role: string
+}
+
+export interface LoginRequest {
+  teamCode: string
+  email: string
+  password: string
+}
+
+export interface LoginResponse {
+  token: string
+  expiresAt: string
+  user: User
+}
+
+// ---- Dashboard ----
+export interface DashboardSummary {
+  totalTropels: number
+  criticalTropels: number
+  openSignals: number
+  sectorStabilityAvg: number
+  signalsBySeverity: Record<Severity, number>
+  generatedAt: string
+}
+
+// ---- Sectores (para el filtro por sector) ----
+export interface SectorListItem {
+  id: string
+  sectorCode: string
+  name: string
+  climate: Climate
+  capacity: number
+  currentLoad: number
+  stabilityLevel: number
+}
+
+export interface SectorsResponse {
+  items: SectorListItem[]
 }

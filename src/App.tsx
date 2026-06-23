@@ -4,6 +4,10 @@ import { Layout } from './components/Layout'
 import { LoginPage } from './pages/LoginPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { SectorStoryPage } from './features/sectorStory/SectorStoryPage'
+import { TropelsPage } from './features/tropels/TropelsPage'
+import { SignalsProvider } from './features/signals/SignalsProvider'
+import { SignalsFeedPage } from './features/signals/SignalsFeedPage'
+import { SignalDetailPage } from './features/signals/SignalDetailPage'
 function App() {
   return (
     <Routes>
@@ -14,7 +18,12 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          {/* Integrante B: /tropels, /signals, /signals/:id */}
+          <Route path="/tropels" element={<TropelsPage />} />
+          {/* Feed y detalle comparten provider para conservar estado y scroll */}
+          <Route element={<SignalsProvider />}>
+            <Route path="/signals" element={<SignalsFeedPage />} />
+            <Route path="/signals/:id" element={<SignalDetailPage />} />
+          </Route>
           <Route path="/sectors/:id/story" element={<SectorStoryPage />} />
         </Route>
       </Route>
