@@ -5,6 +5,7 @@ import { LoginPage } from './pages/LoginPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { SectorStoryPage } from './features/sectorStory/SectorStoryPage'
 import { SectorSummaryPage } from './features/sectorStory/SectorSummaryPage'
+import { SectorsPage } from './features/sectorStory/SectorsPage'
 import { TropelsPage } from './features/tropels/TropelsPage'
 import { SignalsProvider } from './features/signals/SignalsProvider'
 import { SignalsFeedPage } from './features/signals/SignalsFeedPage'
@@ -25,6 +26,7 @@ function App() {
             <Route path="/signals" element={<SignalsFeedPage />} />
             <Route path="/signals/:id" element={<SignalDetailPage />} />
           </Route>
+          <Route path="/sectors" element={<SectorsPage />} />
           <Route path="/sectors/:id" element={<SectorSummaryPage />} />
           <Route path="/sectors/:id/story" element={<SectorStoryPage />} />
         </Route>

@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/tropels', label: 'Tropeles' },
   { to: '/signals', label: 'Señales' },
+  { to: '/sectors', label: 'Sectores' },
 ]
 
 export function Layout() {
