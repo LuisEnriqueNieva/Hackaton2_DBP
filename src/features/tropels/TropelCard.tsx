@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { Tropel } from '../../types/api'
 import { VITAL_BADGE } from '../constants'
 
@@ -24,7 +25,12 @@ export function TropelCard({ tropel }: { tropel: Tropel }) {
       </dl>
 
       <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
-        <span>{tropel.sector.name}</span>
+        <Link
+          to={`/sectors/${tropel.sector.id}`}
+          className="text-emerald-400/80 transition-colors hover:text-emerald-300 focus-visible:outline focus-visible:outline-1 focus-visible:outline-emerald-400"
+        >
+          {tropel.sector.name} →
+        </Link>
         <span>Guardián: {tropel.guardianName}</span>
       </div>
     </article>

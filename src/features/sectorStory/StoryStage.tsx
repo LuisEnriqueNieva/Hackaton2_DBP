@@ -24,8 +24,9 @@ export const StoryStage = forwardRef<HTMLElement, StoryStageProps>(
           .join(' ')}
         aria-current={isActive ? 'true' : undefined}
       >
+        <span className="story-stage__event">{stage.dominantEvent}</span>
         <h3 className="story-stage__title">{stage.title}</h3>
-        <p className="story-stage__body">{stage.body}</p>
+        <p className="story-stage__body">{stage.narrative}</p>
       </section>
     )
   }

@@ -59,24 +59,34 @@ export interface ApiError {
   details: Record<string, unknown>
 }
 
-export interface StoryStageMetric {
-  label: string
-  value: number | string
+// Métricas de una etapa, tal como las devuelve el backend (objeto, no array).
+export interface StoryStageMetrics {
+  stability: number
+  energy: number
+  alerts: number
 }
 
 export interface StoryStage {
   id: string
   order: number
   title: string
-  body: string
-  visualKey: string
-  metrics: StoryStageMetric[]
+  narrative: string
+  dominantEvent: string
+  metrics: StoryStageMetrics
+  assetKey: string
+  colorToken: string
+  progress: number
 }
 
+export interface SectorStorySummary {
+  id: string
+  name: string
+  climate: Climate
+}
+
+// GET /sectors/:id/story → { sector, stages[8] }
 export interface SectorStory {
-  sectorId: string
-  sectorName: string
-  summary: string
+  sector: SectorStorySummary
   stages: StoryStage[]
 }
 
