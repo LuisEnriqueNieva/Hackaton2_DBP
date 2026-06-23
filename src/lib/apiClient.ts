@@ -1,6 +1,6 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL as string
 
-function getToken(): string | null {
+export function getToken(): string | null {
   return localStorage.getItem('token')
 }
 
@@ -35,4 +35,10 @@ export async function apiFetch<T>(
   }
 
   return res.json() as Promise<T>
+}
+
+// Distingue una request cancelada (AbortController) de un error real,
+// para no mostrar estados de error cuando solo cancelamos una request obsoleta.
+export function isAbortError(err: unknown): boolean {
+  return err instanceof DOMException && err.name === 'AbortError'
 }

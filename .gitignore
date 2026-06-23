@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Variables de entorno (se commitea solo .env.example)
+.env
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +26,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.CLAUDE.md
+.DOCUMENT.md
